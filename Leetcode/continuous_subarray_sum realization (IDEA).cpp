@@ -1,0 +1,40 @@
+//https://leetcode.com/problems/continuous-subarray-sum/
+
+class Solution {
+public:
+    bool checkSubarraySum(vector<int>& nums, int k) {
+        if(nums.size() <  2) { return false; }
+ if (k != 0){
+   int i = 0;
+   map<int, int>mp;
+while(true){
+
+    if(nums[i] % k == 0 && i !=0){
+        return true;
+    }
+    else {
+        if(mp.find(nums[i] % k) == mp.end())
+        {
+            mp[nums[i] % k] = i;
+           }
+        else if( i - mp[nums[i] % k] > 1)
+        {
+            return true;
+        }
+    }
+        i++;
+    if(i == nums.size())   return false; 
+    nums[i] += nums[i -1];
+    
+         }
+    }
+         else {
+                for (int i = 1; i < nums.size(); i++){
+                 if(nums[i] == 0 && nums[i-1] == 0 )  return true;
+            }
+        return false ;
+         }
+
+
+    }
+};

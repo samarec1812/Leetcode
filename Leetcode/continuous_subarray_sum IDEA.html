@@ -1,0 +1,90 @@
+<title>Continuous_subarray_sum</title>
+<h1>Leetcode problems </h1>
+<a href="https://leetcode.com/problems/continuous-subarray-sum/">Algorithms of solutions "Continuous_subarray_sum"</a>
+
+<br>
+
+<br>
+1. Problem
+<br> Given a list of non-negative numbers and a target integer k, write a function to check if the array has a  <br> continuous subarray of size at least 2 that sums up to the multiple of k,<br> 
+that is, sums up to n*k where n is also an integer<br> 
+<br> 
+2. Thinking process<br>
+  2.1 Calculate the summation of a continuous subarray<br> 
+As we know the summation of series<br> 
+<br> 
+S(n) = a(1) + a(2) + ... + a(n), n ≥ 1<br> 
+which has a recursion formula<br> 
+<br> 
+S(n) = a(1), n = 1<br> 
+S(n) = a(n) + S(n - 1), n > 1<br> 
+Suppose the summation of a subarray from a(i) to a(j) is<br> 
+<br> 
+T(i, j) = a(i) + a(i + 1) + ... + a(j - 1) + a(j), 1≤ i < j ≤ n.<br> 
+It can be inferred that<br> 
+<br> 
+T(i, j) = S(j), i = 1.<br> 
+T(i, j) = S(j) - S(i - 1), i > 1.<br> 
+2.2 Define the multiple of k (k ≠ 0) by modulo<br> 
+The problem is to find a continuous subarray of size at least 2 that sums up to the multiple of k, which means<br> 
+<br> 
+T(i, j) = n × k, 1≤ i < j ≤ n.<br> 
+That is to say<br> 
+<br> 
+S(j) = n × k , 1 = i < j.<br> 
+S(j) - S(i - 1) = n × k, 1 < i < j.<br> 
+By doing the modulo, we get<br> 
+<br> 
+S(j) ≡ 0 mod k , 1 = i < j.<br> 
+S(j) ≡ S(i - 1) mod k, 1 < i < j.<br> 
+3. Algorithm<br> 
+3.1. Special cases<br> 
+A. The size of array < 2<br> 
+<br> 
+Since the size of subarray is at least 2, return false.<br> 
+B. k = 0<br> 
+<br> 
+T(i, j) = a(i) + a(i + 1) + ... + a(j - 1) + a(j) = 0.<br> 
+As the array only contains non-negative numbers, that is to say<br> 
+<br> 
+a(i) = a(i + 1) = ... = a(j - 1) = a(j) = 0.<br> 
+Since the size of subarray is at least 2,<br> 
+<br> 
+if there are 2 adjacent zeros in the array, return true.<br> 
+<br> 
+If not, return false.<br> 
+<br> 
+3.2 Normal situation<br> 
+Step 1: Summation<br> 
+<br> 
+Do iteration by using the recursion formula<br> 
+<br> 
+S(n) = a(1), n = 1<br> 
+S(n) = a(n) + S(n - 1), n > 1.<br> 
+Step 2: Modulo operation<br> 
+<br> 
+There are 2 situations:<br> 
+<br> 
+S(j) ≡ 0 mod k , 1 = i < j.<br> 
+S(j) ≡ S(i - 1) mod k, 1 < i < j.<br> 
+When doing iteration from j = 1 to j = n, we need to judge<br> 
+<br> 
+A. When j > 1 and S(j) ≡ 0 mod k, return true.<br> 
+<br> 
+B. Use a hash table (the key is S(i) mod k) to record THE FIRST i.<br> 
+If a same key appears twice (means S(j) ≡ S(i) mod k) and j - i > 1, return true.<br> 
+<br> 
+ 
+<br> 
+C. After the iteration, return false.<br> 
+<br> 
+4. Complexity analysis<br> 
+4.1 Time complexity<br> 
+As Step 1 and Step 2 in Section 3 can be merged to a single iteration from j = 1 to j = n.<br> 
+<br> 
+The time complexity is O(n).<br> 
+4.2 Space complexity<br> 
+As the hash table's key is a remainder from division based on integer k,<br> 
+ the probable maximum size of the hash table is |k|.<br> 
+<br> 
+The space complexity is O(|k|).<br> </h1>
