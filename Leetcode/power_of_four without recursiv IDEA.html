@@ -1,0 +1,9 @@
+<title>Power_of_four without recursiv</title>
+<h1>Algorithms and main ideas</h1>
+<br>A brief explanation:
+
+<br>1. num & (num - 1) == 0 indicates num = '00...0100...000', i.e. only one set bit in binary form;
+<br>
+<br>2. num & 0x55...5 finds power of 4. 4^0=0b1, 4^1=0b100, 4^2=0b10000, 4^3=0b1000000 ..., so 4^0 | 4^1 | ... = 0x55...5
+<br>
+<br>note: there is a corner case when num = INT_MIN, it can be handled together in check condition 2, so we save one if-else branch.
