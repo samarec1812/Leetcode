@@ -1,4 +1,4 @@
-//https://leetcode.com/problems/swap-salary
+# https://leetcode.com/problems/swap-salary
 # Write your MySQL query statement below
 update  salary 
 set sex = case  
