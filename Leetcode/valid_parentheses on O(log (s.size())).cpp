@@ -1,3 +1,4 @@
+//https://leetcode.com/problems/valid-parentheses
 class Solution {
 public:
   inline bool Check1 (char c)
