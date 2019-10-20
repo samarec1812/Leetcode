@@ -22,5 +22,6 @@ public:
             tec=tec->next; 
         }
         return head; 
+        
     }
 };
