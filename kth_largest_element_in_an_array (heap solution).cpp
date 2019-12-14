@@ -19,7 +19,7 @@ public:
             Heapify(a, length, i); 
     }
     
-void Heapsort(vector<int>& a){
+void Heapsort(vector<int>&a){
 Build_Heap(a, a.size()); 
 for(size_t i = a.size()- 1; i > 0; i--){
     swap(a[0], a[i]); 
@@ -34,13 +34,17 @@ for(size_t i = a.size()- 1; i > 0; i--){
         Heapify(a, length, 0); 
         return a[0]; 
     }
-    
-    int findKthLargest(vector<int>& nums, int k) {
+    int Maximum(vector<int> nums, int k){
      Heapsort(nums); 
       for(int i =0; i < k-1; i++){
           nums.erase(nums.begin()+nums.size()-1, nums.end()); 
       }
         return Heap_Extract(nums, nums.size()); 
-               
+           
+    }
+    
+    int findKthLargest(vector<int>& nums, int k) {
+     
+        return Maximum(nums, k);;     
     }
 };
